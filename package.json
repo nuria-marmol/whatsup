@@ -10,6 +10,7 @@
     "sass-mobile": "sass -w assets/sass/mobile.sass:public/css/mobile.css"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^1.31.0",
     "core-js": "^3.8.3",
     "sass": "^1.49.9",
     "vue": "^3.2.13",
