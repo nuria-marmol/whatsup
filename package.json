@@ -5,10 +5,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "sass-desktop": "sass -w assets/sass/desktop.sass:public/css/desktop.css",
+    "sass-mobile": "sass -w assets/sass/mobile.sass:public/css/mobile.css"
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "sass": "^1.49.9",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
