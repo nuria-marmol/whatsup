@@ -1,0 +1,25 @@
+.single-post
+  $border-radius: 1.2rem
+  display: grid
+  row-gap: .75rem
+  padding: 1rem
+  background-color: rgba($colour-blue, .5)
+  border-radius: $border-radius $border-radius $border-radius 0
+  width: 75%
+
+  &.mine
+    background-color: rgb($colour-purple, .25)
+    border-radius: $border-radius $border-radius 0 $border-radius
+    margin-left: auto
+
+  p
+    margin: unset
+
+  &__header
+    display: grid
+    grid-template-columns: 1fr auto
+    column-gap: .5rem
+
+  .button
+    width: max-content
+    margin-left: auto

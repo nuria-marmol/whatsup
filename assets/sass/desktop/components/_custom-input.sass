@@ -1,0 +1,22 @@
+.input
+    margin: 1rem 0
+    &__label
+        display: flex
+        flex-direction: column
+    &__field
+        padding: .4rem
+        border-radius: 0
+        border: 1px solid $colour-black
+        &:focus
+            outline: none
+        &:hover
+            filter: brightness(120%)
+    &__error
+        border-color: $colour-red
+    &__errors
+        color: $colour-red
+        padding: 0
+        margin: 0
+        list-style: none
+        li
+            margin-top: 1rem
