@@ -9,6 +9,10 @@ export default {
             if (await this.supabase.auth.user()?.aud !== 'authenticated') {
                 this.$router.push({name: 'login'});
             }
+        },
+        // Para ver si el usuario está logeado
+        isLogin: async function() {
+            return await this.supabase.auth.user()?.aud !== 'authenticated';
         }
     },
     mounted() {

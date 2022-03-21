@@ -1,18 +1,17 @@
 <template>
   <div></div>
-  <!--<div class="search">
+  <div class="search">
     <h1>Buscador</h1>
-    <p><router-link :to="{ 'name': 'home '}">Salir</router-link></p>
     <form class="search__form">
-      --><!-- Buscador -->
-      <!--<CustomInput
+      <!-- Buscador -->
+      <CustomInput
           label="Buscador"
           type="search"
           placeholder="Escribe aquí"
           v-model="search"
       />
       <custom-button
-          @do-click=""
+          @do-click="buscar"
           text="Buscar"
       />
     </form>
@@ -21,30 +20,53 @@
           v-for="(post, index) in posts"
           :key="index"
           :message="post.text"
-          :userName="getUserName(post.user_id)"
-          :date="getFormatDate(post.created_at)"
-          :is-my-post="isMyPost(post.user_id)"
+          :userName="post.user_id"
           :id="post.id"
       />
     </div>
-  </div>-->
+  </div>
 </template>
 
 <script>
-//import CustomInput from "@/components/CustomInput";
-//import CustomButton from "@/components/CustomButton";
-//import singlePost from "@/components/SinglePost";
+import CustomInput from "@/components/CustomInput";
+import CustomButton from "@/components/CustomButton";
+import singlePost from "@/components/SinglePost";
 //import NProgress from "nprogress"
-//import supabase from "@/mixins/supabase.js"
+import supabase from "@/mixins/supabase.js"
+import {formatRelative} from "date-fns";
+import {es} from "date-fns/locale";
 
 export default {
   name: "SearchView",
   components: {
-    //CustomButton,
-    //CustomInput,
-    //singlePost
+    CustomButton,
+    CustomInput,
+    singlePost
   },
-  //mixins: [supabase]
+  mixins: [supabase],
+  data() {
+    return {
+      search: "",
+      posts: []
+    }
+  },
+  methods: {
+    buscar: async function() {
+      const { data } = await this.supabase
+          .from('social_network-posts')
+          .select('text')
+          .ilike('text', `%${this.search}%`)
+      this.posts = data;
+    },
+    getFormatDate: function() {
+      return formatRelative(new Date(), new Date(), { locale: es })
+    },
+    getUserName: function(userId) {
+      // Devuelvo el primer elemento. El name es opcional
+      return this.profiles.filter(profile => profile.user_id == userId)[0]?.name;
+    }
+  }
+
 }
 </script>
 

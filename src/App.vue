@@ -3,17 +3,22 @@
     <router-view></router-view>
     <nav>
       <ul>
-        <li>
+        <li v-if="$store.state.isLogin">
           <router-link :to=" { name: 'home' } ">Home</router-link>
         </li>
-        <li>
+        <li v-if="$store.state.isLogin">
           <router-link :to=" { name: 'search' } ">Buscar</router-link>
         </li>
         <li>
           <custom-button
-          text="Salir"
-          @do-click="logout"
+              v-if="$store.state.isLogin"
+            text="Salir"
+            @do-click="logout"
           />
+          <router-link
+              v-else
+              :to="{ 'name': 'login' }"
+          >Login</router-link>
         </li>
       </ul>
     </nav>
@@ -56,7 +61,13 @@ export default {
     logout: async function() {
       await this.supabase.auth.signOut();
       this.checkLogin();
+      // Lo tenemos en la carpeta store
+      this.$store.state.isLogin = false;
     }
+  },
+  mounted: async function() {
+    // Miramos si está logeado al cargar la pág. Usamos la función de private
+    this.$store.state.isLogin = await this.isLogin();
   }
 }
 </script>

@@ -531,6 +531,10 @@ button:disabled {
   margin-left: auto;
 }
 
+ul {
+  list-style: none;
+}
+
 .home__posts {
   display: grid;
   row-gap: 2rem;

@@ -59,6 +59,8 @@ export default {
       } else {
         // Una vez logeado, te lleva a la home
         this.$router.push({name: 'home'})
+        // Pasamos el login a true
+        this.$store.state.isLogin = true;
       }
       NProgress.done();
       return session;
