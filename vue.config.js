@@ -5,5 +5,7 @@ module.exports = defineConfig({
 
   pwa: {
     name: 'Whatsup'
-  }
+  },
+
+  publicPath: '/whatsup'
 })
